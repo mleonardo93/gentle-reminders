@@ -68,3 +68,6 @@ gem 'bootstrap-sass'
 
 # Use Devise for user sign-in and registration
 gem 'devise'
+
+# Use Figaro to hide environment variables
+gem 'figaro'

@@ -65,7 +65,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailed.default_url_options = { host: "gentle-garden-19389.herokuapp.com/" }
+  config.action_mailed.default_url_options = { host: "gentle-garden-19389.herokuapp.com" }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
