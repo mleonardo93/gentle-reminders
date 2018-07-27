@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :items
+  
   attr_writer :login
 
   def login
