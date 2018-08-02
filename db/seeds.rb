@@ -9,6 +9,7 @@
 10.times do
   User.create!(
     email: Faker::Internet.email,
+    username: Faker::Internet.username,
     password: Faker::Internet.password(8)
   )
 end
