@@ -71,3 +71,7 @@ gem 'devise'
 
 # Use Figaro to hide environment variables
 gem 'figaro'
+
+# Use Faker to generate fake data
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
