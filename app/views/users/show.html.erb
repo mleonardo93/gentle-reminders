@@ -4,7 +4,9 @@
       <div class="media-body">
         <h2 class="media-heading"><%= @user.username %></h2>
         <h2 class="media-heading"><%= @user.email %></h2>
-        <%= render @user.items %>
+        <ul id="items">
+          <%= render @user.items %>
+        </ul>
         <% if current_user %>
           <%= render "items/form", item: Item.new, user: @user %>
         <% end %>

@@ -14,4 +14,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    item = @user.items.find(params[:id])
+
+    item.destroy 
+    flash[:notice] = "Task marked done."
+    render json: item
+
+  end
+
 end

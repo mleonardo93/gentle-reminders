@@ -1,14 +1,17 @@
-<div class="media">
-  <div class="media-body">
-    <h4 class="media-heading">
-      <%= item.name %>
-    </h4>
-    <small>
-      <% if item.due.nil? %>
-        Added <%= time_ago_in_words(item.created_at) %> ago 
-      <% else %>
-        Due at <%= item.due %>
-      <% end %>
-    </small>
+<li data-item-id="<%= item.id %>">
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= item.name %>
+        <%= link_to "", user_item_path(@user, item.id), remote: true, method: :delete, class: "glyphicon glyphicon-ok" %>
+      </h4>
+      <small>
+        <% if item.due.nil? %>
+          Added <%= time_ago_in_words(item.created_at) %> ago 
+        <% else %>
+          Due at <%= item.due %>
+        <% end %>
+      </small>
+    </div>
   </div>
-</div>
+</li>
