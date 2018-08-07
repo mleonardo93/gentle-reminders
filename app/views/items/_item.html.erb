@@ -7,7 +7,8 @@
       </h4>
       <small>
         <% if item.due.nil? %>
-          Added <%= time_ago_in_words(item.created_at) %> ago 
+          Added <%= time_ago_in_words(item.created_at) %> ago </br>
+          Expires in <%= distance_of_time_in_words(Time.now, item.created_at + 7.days) %> 
         <% else %>
           Due at <%= item.due %>
         <% end %>
