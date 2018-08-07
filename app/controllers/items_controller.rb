@@ -1,9 +1,7 @@
 class ItemsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
-    @item = @user.items.new
-    @item.name = params[:item][:name]
-    @item.due = params[:item][:due]
+    @item = @user.items.build(item_params)
 
     if @item.save
       flash[:notice] = "Item was saved."
@@ -22,6 +20,11 @@ class ItemsController < ApplicationController
     flash[:notice] = "Task marked done."
     render json: item
 
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :due)
   end
 
 end
