@@ -13,12 +13,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    item = @user.items.find(params[:id])
+    @item = Item.find(params[:id])
 
-    item.destroy 
-    flash[:notice] = "Task marked done."
-    render json: item
+    if @item.destroy 
+      flash.now[:notice] = "Task marked done."
+    else
+      flash.now[:alert] = "Task unable to be marked done. Please try again."
+    end
 
   end
 

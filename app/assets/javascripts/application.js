@@ -15,9 +15,3 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
-  $("[data-item-id]").on("ajax:success", function (event, data, status, xhr){
-    var item_id = xhr.responseJSON.id;
-    $("[data-item-id=" + item_id + "]").hide()
-  });
-})
