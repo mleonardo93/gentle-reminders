@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-#  get 'items/create'
-#  get 'users/show'
-#  get 'home/index'
-#  get 'home/about'
-#  devise_for :users
-#  resources :users, only: [:show] do
-#    resources :items, only: [:create, :destroy]
-#  end
-#  root to: "users#current_user_home"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :api, defaults: {  format: :json } do
+    resources :users, only: [:index] do
+      resources :items, only: [:create, :destroy]
+    end
+  end
+  devise_for :users
+
+  get "*path" => redirect("/?goto=%{path}")
 end
