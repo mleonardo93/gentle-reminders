@@ -9,3 +9,8 @@ As a user, I want completed tasks and tasks older than seven days hidden from my
 As a user, I want expired and completed tasks presented in a separate view 	
 As a user, I want to submit new tasks with a description, priority level and three states: expired, completed or active 	
 As a user, I want to mark tasks as complete 	
+
+Display a list of the user’s todo’s.
+User should be able to add a todo.
+User should be able to mark a todo complete.
+User should be able to delete a todo.

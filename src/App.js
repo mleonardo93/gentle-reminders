@@ -16,9 +16,9 @@ class App extends Component {
     fetch("api/users")
       .then((resp) => resp.json())
       .then((resp) => this.setState({currentUser: resp.data.user} ) ) 
-    fetch("api/users/items")
+    fetch(`api/users/${this.state.currentUser.id}/items`)
       .then((resp) => resp.json())
-      .then((resp) => this.setState({items: resp.data.user.items}))
+      .then((resp) => this.setState({items: resp.data.items}))
   }
   render() {
     return <Router>
