@@ -12,7 +12,7 @@ class Api::ItemsController < ApiController
 
   def create
     puts "Create method called"
-    @user = current_user
+    @user = User.find(params[:user_id])
     @item = @user.items.build(item_params)
 
     if @item.save
@@ -24,6 +24,6 @@ class Api::ItemsController < ApiController
 
   private
   def item_params
-    params.require(:item).permit(:name, due)
+    params.require(:item).permit(:name, :due)
   end
 end

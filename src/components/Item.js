@@ -8,7 +8,8 @@ class Item extends React.Component {
   render() {
     return (
       <li>
-        <span>{ this.props.name }</span>
+        <p>{ this.props.name }</p>
+        <p>{ this.props.due }</p>
       </li>
     );
   }
