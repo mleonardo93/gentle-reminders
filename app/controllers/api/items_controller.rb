@@ -33,7 +33,22 @@ class Api::ItemsController < ApiController
       render json: @item.errors, status: 500
     end
   end
-  
+
+  def destroy
+    puts "Destroy method called"
+    @item = Item.find(params[:id])
+
+    if @item.destroy
+      render json: { 
+        data: {
+          items: current_user.items
+        }
+      }, status: 200
+    else
+      render json: @item
+    end
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :due, :complete)

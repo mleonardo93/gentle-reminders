@@ -54,7 +54,22 @@ class Dashboard extends React.Component {
     return fetch(`api/users/${this.props.currentUser.id}/items`)
       .then((resp) => resp.json())
       .then((resp) => this.setState({items: resp.data.items}))
-}
+  }
+
+  deleteItem(index) {
+    const items = this.state.items.slice();
+    const item = items[index];
+    fetch(`api/users/${this.props.currentUser.id}/items/${item.id}`, {
+      method: 'DELETE',
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => console.log('JSON deleted successfully', JSON.stringify(response)))
+    return fetch(`api/users/${this.props.currentUser.id}/items`)
+      .then((resp) => resp.json())
+      .then((resp) => this.setState({items: resp.data.items}))
+  }
 
   render() {
     return (
@@ -63,7 +78,7 @@ class Dashboard extends React.Component {
         <p>{ this.props.currentUser.username }</p>
         <ul>
           { this.state.items.map( (item, index) =>
-            <Item key={ index } name={ item.name } due={ item.due } complete={ item.complete } toggleComplete={ () => this.toggleComplete(index) } /> 
+            <Item key={ index } name={ item.name } due={ item.due } complete={ item.complete } toggleComplete={ () => this.toggleComplete(index) } deleteItem={ () => this.deleteItem(index) } /> 
           )}
         </ul>
         <form onSubmit={ (e) => this.handleSubmit(e) }>
