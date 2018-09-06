@@ -2,7 +2,7 @@ class Api::ItemsController < ApiController
   #before_action :authenticate_user!
 
   def index
-    puts current_user.items
+    puts "Index called!"
     render json: {
       data: {
         items: current_user.items
@@ -22,8 +22,20 @@ class Api::ItemsController < ApiController
     end
   end
 
+  def update
+    puts "Update method called"
+    @item = Item.find(params[:id])
+    @item.assign_attributes(item_params)
+
+    if @item.update(item_params)
+      render json: @item, status: 200
+    else
+      render json: @item.errors, status: 500
+    end
+  end
+  
   private
   def item_params
-    params.require(:item).permit(:name, :due)
+    params.require(:item).permit(:name, :due, :complete)
   end
 end

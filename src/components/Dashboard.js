@@ -24,19 +24,37 @@ class Dashboard extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (!this.state.newItemName) { return };
-    const newItem = { name: this.state.newItemName, due: this.state.due, user_id: this.props.currentUser.id };
+    const newItem = { name: this.state.newItemName, due: this.state.due, user_id: this.props.currentUser.id, complete: false };
     fetch(`api/users/${this.props.currentUser.id}/items`, {
       method: 'POST',
       body: JSON.stringify(newItem),
       headers:{
         'Content-Type': 'application/json'
       }
-      })
+    })
       .then(response => console.log('JSON posted successfully', JSON.stringify(response)))
-    fetch(`api/users/${this.props.currentUser.id}/items`)
+    return fetch(`api/users/${this.props.currentUser.id}/items`)
       .then((resp) => resp.json())
       .then((resp) => this.setState({items: resp.data.items}))
   }
+
+  toggleComplete(index) {
+    const items = this.state.items.slice();
+    const item = items[index];
+    item.complete = item.complete ? false : true
+    const updatedItem = { id: item.id, complete: item.complete }
+    fetch(`api/users/${this.props.currentUser.id}/items/${item.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedItem),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => console.log('JSON put successfully', JSON.stringify(response)))
+    return fetch(`api/users/${this.props.currentUser.id}/items`)
+      .then((resp) => resp.json())
+      .then((resp) => this.setState({items: resp.data.items}))
+}
 
   render() {
     return (
@@ -45,7 +63,7 @@ class Dashboard extends React.Component {
         <p>{ this.props.currentUser.username }</p>
         <ul>
           { this.state.items.map( (item, index) =>
-            <Item key={ index } name={ item.name } due={ item.due } /> 
+            <Item key={ index } name={ item.name } due={ item.due } complete={ item.complete } toggleComplete={ () => this.toggleComplete(index) } /> 
           )}
         </ul>
         <form onSubmit={ (e) => this.handleSubmit(e) }>
