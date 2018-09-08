@@ -39,11 +39,7 @@ class Api::ItemsController < ApiController
     @item = Item.find(params[:id])
 
     if @item.destroy
-      render json: { 
-        data: {
-          items: current_user.items
-        }
-      }, status: 200
+      render json: {status: 200}
     else
       render json: @item
     end
