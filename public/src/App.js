@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Dashboard from './components/Dashboard';
-import Item from './components/Item';
+import Splash from './components/Splash';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class App extends Component {
       items: []
     }
   }
+
   componentDidMount() {
     fetch("api/users")
       .then((resp) => resp.json())
@@ -20,13 +21,19 @@ class App extends Component {
       .then((resp) => resp.json())
       .then((resp) => this.setState({items: resp.data.items}))
   }
+
   render() {
-    return <Router>
+    return <Router className="App" >
       <Switch>
-        <Route 
+        { this.state.currentUser.id && <Route 
           path="/"  
-          component={() => <Dashboard currentUser={this.state.currentUser} items={this.state.items} /> }
+          component={() => 
+          <Dashboard currentUser={this.state.currentUser} 
+            items={this.state.items} 
+          /> }
         />
+        }
+        <Route path="/" component={() => <Splash />} />
       </Switch>
     </Router>
   }

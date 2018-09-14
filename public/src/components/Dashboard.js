@@ -1,10 +1,16 @@
 import React from 'react'
 import Item from './Item'
+import './Dashboard.css'
+import ReactNotifications from 'react-browser-notifications'
 import DateTime from 'react-datetime'
+import '../../node_modules/react-datetime/css/react-datetime.css'
+
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.showNotifications = this.showNotifications.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       due: null,
       newItemName: "",
@@ -14,12 +20,12 @@ class Dashboard extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ newItemName: e.target.value })
+    this.setState({ newItemName: e.target.value });
   }
 
   handleDue(e) {
-    console.log("handleDue called")
-    this.setState({ due: e })
+    console.log("handleDue called");
+    this.setState({ due: e });
   }
   
   handleSubmit(e) {
@@ -40,7 +46,9 @@ class Dashboard extends React.Component {
       headers:{
         'Content-Type': 'application/json'
       }
-    }).then(() => this.updateItems())
+    }).then(() => this.updateItems());
+
+    this.setState({ newItemName: "" });
   }
 
   toggleComplete(index) {
@@ -54,7 +62,7 @@ class Dashboard extends React.Component {
       headers:{
         'Content-Type': 'application/json'
       }
-    }).then(() => this.updateItems())
+    }).then(() => this.updateItems());
   }
 
   deleteItem(index) {
@@ -65,37 +73,67 @@ class Dashboard extends React.Component {
       headers:{
         'Content-Type': 'application/json'
       }
-    }).then(() => this.updateItems())
+    }).then(() => this.updateItems());
     
   }
 
   updateItems() {
     fetch(`api/users/${this.props.currentUser.id}/items`)
       .then((resp) => resp.json())
-      .then((resp) => this.setState({items: resp.data.items}))
+      .then((resp) => this.setState({items: resp.data.items}));
+  }
+
+  showNotifications() {
+    if(this.n.supported()) this.n.show();
+  }
+
+  handleClick(event) {
+    this.n.close(event.target.tag);
   }
 
   render() {
     return (
       <div className="Dashboard">
-        <p>{ this.props.currentUser.email }</p>
-        <p>{ this.props.currentUser.username }</p>
-        <ul>
-          { this.state.items.map( (item, index) =>
-            <Item key={ index } name={ item.name } due={ item.due } complete={ item.complete } toggleComplete={ () => this.toggleComplete(index) } deleteItem={ () => this.deleteItem(index) } /> 
-          )}
-        </ul>
-        <form onSubmit={ (e) => this.handleSubmit(e) }>
-          <p>New item name</p>
-          <input 
-            type="text" 
-            value={ this.state.newItemName } 
-            onChange={ (e) => this.handleChange(e) } 
+        <div>
+          <ReactNotifications
+            onRef={ref => (this.n = ref)}
+            title="Gentle Reminders"
+            body="You can do it! You have a to-do due now!"
+            onClick={event => this.handleClick(event)}
           />
-          <p>New item due time</p>
-          <DateTime onChange={ (e) => this.handleDue(e) }/>
-          <input type="submit" />
-        </form>      
+          <button onClick={this.showNotifications}>
+            Notify me!
+          </button>
+        </div>
+        <div className="Header">
+          <h1>{this.props.currentUser.username}'s to-dos</h1>
+        </div>
+        <span className="Form">
+          <form onSubmit={ (e) => this.handleSubmit(e) }>
+            <label>New item name</label>
+            <input 
+              type="text" 
+              value={ this.state.newItemName } 
+              onChange={ (e) => this.handleChange(e) } 
+            />
+            <label>New item due time</label>
+            <DateTime onChange={ (e) => this.handleDue(e) }/>
+            <input type="submit" />
+          </form>
+        </span>        
+        <span className="List">
+          <ul>
+            { this.state.items.map( (item, index) =>
+              <Item key={ index } 
+                name={ item.name } 
+                due={ item.due } 
+                complete={ item.complete } 
+                toggleComplete={ () => this.toggleComplete(index) } 
+                deleteItem={ () => this.deleteItem(index) } 
+              /> 
+            )}
+          </ul>
+        </span>      
       </div>
     );
   }
