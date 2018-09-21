@@ -1,0 +1,32 @@
+.Dashboard {
+  margin: auto;
+}
+
+.Header {
+  margin: 0 0 0 50px;
+}
+
+.Header h1 {
+  color: #72A1E5;
+  text-shadow: 10px 10px 5px #999999;
+}
+
+.Form {
+  display: inline-block;
+  background-color: #2E382E;
+  width: 200px;
+  margin: 50px 0 0 50px;
+  border: 2px solid #000000;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 5px #777777;
+}
+
+.Form input {
+  margin: 5px;
+}
+
+.Form label {
+  padding: 5px;
+  color: #72A1E5;
+}

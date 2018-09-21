@@ -1,0 +1,20 @@
+.Item {
+  text-align: left;
+  background-color: #66C7F4;
+  width: 200px;
+  margin: 0 15px 15px 15px;
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 5px #777777;
+  display: inline-block;
+}
+
+.Item label {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.Done {
+  display: inline-block;
+}
