@@ -66,6 +66,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use Bootstrap for CSS
 gem 'bootstrap-sass'
 
+gem 'react-rails'
+gem 'webpacker'
+
 # Use Devise for user sign-in and registration
 gem 'devise'
 
@@ -74,4 +77,3 @@ gem 'figaro'
 
 # Use Faker to generate fake data
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
-

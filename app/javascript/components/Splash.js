@@ -1,7 +1,7 @@
-import React from 'react'
-import SignUp from './SignUp'
-import Login from './Login'
-import './Splash.css'
+import React from 'react';
+import SignUp from './SignUp';
+import Login from './Login';
+import '../styles/Splash.css';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -30,9 +30,9 @@ class Splash extends React.Component {
         <div className="Body">
           <h3>
             <button onClick={this.handleSignUp}>Sign up</button>
-            or 
+            or
             <button onClick={this.handleLogin}>log in</button>
-          </h3> 
+          </h3>
           { this.state.login == false &&
             <SignUp />
           }
