@@ -3,11 +3,13 @@ class Api::ItemsController < ApiController
 
   def index
     puts "Index called!"
-    render json: {
-      data: {
-        items: current_user.items
-      }
-    }, status: 200
+    if current_user 
+      render json: {
+        data: {
+          items: current_user.items
+        }
+      }, status: 200
+    end
   end
 
   def create
