@@ -3,7 +3,7 @@ import Item from './Item'
 import '../styles/Dashboard.css'
 import ReactNotifications from 'react-browser-notifications'
 import DateTime from 'react-datetime'
-// import '../../node_modules/react-datetime/css/react-datetime.css'
+import '../../../node_modules/react-datetime/css/react-datetime.css'
 
 
 class Dashboard extends React.Component {
