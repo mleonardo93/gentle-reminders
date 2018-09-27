@@ -6074,6 +6074,10 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
+react-web-notification@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-web-notification/-/react-web-notification-0.3.2.tgz#d496bde85d2b74225f1b39a66efc4cdd599b09f8"
+
 react@^16.2.0, react@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
