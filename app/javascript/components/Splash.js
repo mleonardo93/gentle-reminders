@@ -1,6 +1,4 @@
 import React from 'react';
-import SignUp from './SignUp';
-import Login from './Login';
 import '../styles/Splash.css';
 
 class Splash extends React.Component {
@@ -27,19 +25,13 @@ class Splash extends React.Component {
           <h1>Gentle Reminders</h1>
           <h2>A kinder to-do app</h2>
         </div>
-        <div className="Body">
-          <h3>
-            <button onClick={this.handleSignUp}>Sign up</button>
-            or
-            <button onClick={this.handleLogin}>log in</button>
-          </h3>
-          { this.state.login == false &&
-            <SignUp />
-          }
-          { this.state.login == true &&
-            <Login />
-          }
-        </div>
+        <span className="Body">
+          <ul>
+            <li><h3>Encouraging messages!</h3></li>
+            <li><h3>Stop avoiding reminders!</h3></li>
+            <li><h3>Get tasks done!</h3></li>
+          </ul>
+        </span>
       </div>
     );
   }

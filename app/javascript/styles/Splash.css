@@ -12,7 +12,14 @@
   text-shadow: 5px 5px 3px #999999;
 }
 
-.Body {
-  margin: 0 0 0 50px;
-  text-align: center;
+.Body li {
+  text-align: left;
+  background-color: #66C7F4;
+  width: 200px;
+  margin: 50px;
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 5px #777777;
+  display: block;
 }

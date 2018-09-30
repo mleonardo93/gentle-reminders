@@ -1,6 +1,5 @@
 import React from 'react'
 import Item from './Item'
-import Notification from 'react-web-notification'
 import DateTime from 'react-datetime'
 import '../styles/Dashboard.css'
 import '../../../node_modules/react-datetime/css/react-datetime.css'
@@ -9,16 +8,11 @@ import '../../../node_modules/react-datetime/css/react-datetime.css'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.showNotifications = this.showNotifications.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
       due: null,
       newItemName: "",
       items: this.props.items,
-      ignore: true,
-      title: ""
     }
-
   }
 
   handleChange(e) {
@@ -48,7 +42,9 @@ class Dashboard extends React.Component {
       headers:{
         'Content-Type': 'application/json'
       }
-    }).then(() => this.updateItems());
+    }).then(() => {
+      this.updateItems();
+    });
 
     this.setState({ newItemName: "" });
   }
@@ -85,87 +81,9 @@ class Dashboard extends React.Component {
       .then((resp) => this.setState({items: resp.data.items}));
   }
 
-  handlePermissionGranted(){
-    console.log("Notification permission granted");
-    this.setState({
-      ignore: false
-    });
-  }
-
-  handlePermissionDenied(){
-    console.log("Notification permission denied");
-    this.setState({
-      ignore: true
-    });
-  }
-
-  handleNotSupported(){
-    console.log("Notification not supported");
-    this.setState({
-      ignore: true
-    });
-  }
-
-  handleNotificationOnClick(e, tag){
-    console.log(e, "Notification clicked tag: " + tag);
-  }
-
-  handleNotificationOnError(e, tag){
-    console.log(e, "Notification error tag: " + tag);
-  }
-
-  handleNotificationOnClose(e, tag){
-    console.log(e, "Notification closed tag: " + tag);
-  }
-
-  handleNotificationOnShow(e, tag){
-    console.log(e, "Notification shown tag: " + tag);
-  }
-
-  handleButtonClick(){
-    if(this.state.ignore) {
-      return;
-    }
-
-    const now = Date.now();
-    const title = "React-Web-Notification" + now;
-    const body = "Hello" + new Date();
-    const tag = now;
-
-    const options = {
-      tag: tag,
-      body: body,
-      lang: "en",
-      dir: "ltr"
-    }
-
-    this.setState({
-      title: title,
-      options: options
-    });
-  }
-
   render() {
     return (
       <div className="Dashboard">
-        <div>
-          <button onClick={this.handleButtonClick.bind(this)}>
-            Notify me!
-          </button>
-          <Notification 
-            ignore={this.state.ignore && this.state.title !== ""}
-            notSupported={this.handleNotSupported.bind(this)}
-            onPermissionGranted={this.handlePermissionGranted.bind(this)}
-            onPermissionDenied={this.handlePermissionDenied.bind(this)}
-            onShow={this.handleNotificationOnShow.bind(this)}
-            onClick={this.handleNotificationOnClick.bind(this)}
-            onClose={this.handleNotificationOnClose.bind(this)}
-            onError={this.handleNotificationOnError.bind(this)}
-            timeout={5000}
-            title={this.state.title}
-            options={this.state.options}
-          />
-        </div>
         <div className="Header">
           <h1>{this.props.currentUser.username}'s to-dos</h1>
         </div>
