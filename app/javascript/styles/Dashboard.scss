@@ -1,0 +1,33 @@
+.Dashboard {
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+}
+
+.Form {
+  display: inline-block;
+  background-color: #cbba83;
+  width: 250px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 1px 1px #000000;
+}
+
+.Form input {
+  margin: 5px;
+}
+
+.Field {
+  width: 200px;
+}
+
+.Form label {
+  margin: 5px;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Item from './Item'
 import DateTime from 'react-datetime'
-import '../styles/Dashboard.css'
+import '../styles/Dashboard.scss'
 import '../../../node_modules/react-datetime/css/react-datetime.css'
 
 
@@ -87,32 +87,42 @@ class Dashboard extends React.Component {
         <div className="Header">
           <h1>{this.props.currentUser.username}'s to-dos</h1>
         </div>
-        <span className="Form">
-          <form onSubmit={ (e) => this.handleSubmit(e) }>
-            <label>New item name</label>
-            <input
-              type="text"
-              value={ this.state.newItemName }
-              onChange={ (e) => this.handleChange(e) }
-            />
-            <label>New item due time</label>
-            <DateTime onChange={ (e) => this.handleDue(e) }/>
-            <input type="submit" />
-          </form>
-        </span>
-        <span className="List">
-          <ul>
-            { this.state.items.map( (item, index) =>
-              <Item key={ index }
-                name={ item.name }
-                due={ item.due }
-                complete={ item.complete }
-                toggleComplete={ () => this.toggleComplete(index) }
-                deleteItem={ () => this.deleteItem(index) }
-              />
-            )}
-          </ul>
-        </span>
+        <ul> 
+          <li>
+            <span className="Form">
+              <form onSubmit={ (e) => this.handleSubmit(e) }>
+                <label>New item name</label>
+                <input
+                  type="text"
+                  value={ this.state.newItemName }
+                  onChange={ (e) => this.handleChange(e) }
+                  className="Field"
+                />
+                <label>New item due time</label>
+                <DateTime 
+                  onChange={ (e) => this.handleDue(e) }
+                  className="Field"
+                />
+                <input type="submit" value="New item" />
+              </form>
+            </span>
+          </li>
+          <li>
+            <span className="List">
+              <ul>
+                { this.state.items.map( (item, index) =>
+                  <Item key={ index }
+                    name={ item.name }
+                    due={ item.due }
+                    complete={ item.complete }
+                    toggleComplete={ () => this.toggleComplete(index) }
+                    deleteItem={ () => this.deleteItem(index) }
+                  />
+                )}
+              </ul>
+            </span>
+          </li>
+        </ul>
       </div>
     );
   }

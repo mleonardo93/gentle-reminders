@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Dashboard from './Dashboard';
 import Splash from './Splash';
-import '../styles/App.css';
+import '../styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {

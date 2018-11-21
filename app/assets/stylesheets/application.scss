@@ -16,3 +16,29 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .top-bar { 
+     background-color: #0077c2;
+ }
+
+ .top-bar a {
+     color: #FFFFFF;
+ }
+
+ .top-bar a:hover {
+     color: #000000;
+ }
+
+ body {
+     background-color: #42a5f5;
+ }
+
+ .Header h1 {
+    color: #FFFFFF;
+    text-shadow: 1px 1px 1px #999999;
+    margin: 10px;  
+ }
+
+ .form a {
+    color: #000000;
+ }

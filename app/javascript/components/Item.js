@@ -1,7 +1,7 @@
 import React from 'react'
 import Notification from 'react-web-notification'
 import moment from 'moment'
-import '../styles/Item.css'
+import '../styles/Item.scss'
 
 class Item extends React.Component {
   constructor(props) {

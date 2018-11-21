@@ -12,18 +12,21 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
-    <div class="container">
+    <div class="top-bar">
       <ul class="nav nav-tabs">
         <li><%= link_to "Home", root_path %></li>
-
         <% if current_user %>
-          <li class="pull-right"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-          <li class="pull-right"><%= current_user.username %></li>
+          <li class="pull-right"><%= link_to "Sign out #{current_user.username}", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li class="pull-right"><%= link_to "Sign up", new_user_registration_path %></li>
           <li class="pull-right"><%= link_to "Sign in", new_user_session_path %></li>
         <% end %>
       </ul>
+    </div>
+
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     </div>
 
     <div class="container">
