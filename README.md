@@ -1,6 +1,7 @@
 # Gentle Reminders
 
-## A React on Rails app built with Ruby 2.5.1 and Rails 5.2.0, held together with Webpacker. A to-do list, but with motivation!  
+## A React on Rails app built with Ruby and Rails, held together with Webpacker. A to-do list, but with motivation!  
+Live at gentlereminders.herokuapp.com
 
 ### User stories  
 * As a user, I want my tasks synced with a persistent backend  
