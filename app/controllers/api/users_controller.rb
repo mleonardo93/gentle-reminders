@@ -2,7 +2,6 @@ class Api::UsersController < ApiController
   #before_action :authenticate_user!
 
   def index
-    puts "Hello from the API users controller"
     if current_user 
       render json: {
         data: {

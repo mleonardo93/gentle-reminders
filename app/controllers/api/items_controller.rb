@@ -2,7 +2,6 @@ class Api::ItemsController < ApiController
   #before_action :authenticate_user!
 
   def index
-    puts "Index called!"
     if current_user 
       render json: {
         data: {
@@ -13,7 +12,6 @@ class Api::ItemsController < ApiController
   end
 
   def create
-    puts "Create method called"
     @user = User.find(params[:user_id])
     @item = @user.items.build(item_params)
 
@@ -25,7 +23,6 @@ class Api::ItemsController < ApiController
   end
 
   def update
-    puts "Update method called"
     @item = Item.find(params[:id])
     @item.assign_attributes(item_params)
 
@@ -37,7 +34,6 @@ class Api::ItemsController < ApiController
   end
 
   def destroy
-    puts "Destroy method called"
     @item = Item.find(params[:id])
 
     if @item.destroy
